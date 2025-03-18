@@ -4,4 +4,7 @@ from django.shortcuts import render
 # Create your views here.
 
 def signup(requests):
-    return HttpResponse("Signup button")
+    return render(requests,'signup.html')
+
+def loginn(requests):
+    return render(requests,'login.html')
