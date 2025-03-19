@@ -37,7 +37,11 @@ def dashboard(request):
     return render(request,'dashboard.html',context)
 
 def add_task(request):
-    return HttpResponse("add_task")
+    if request.method == 'POST':
+        get_title = request.POST.get('title')
+        new_task = Task.objects.create(title=get_title,user = request.user)
+        new_task.save()
+    return redirect('dashboard')
 
 def update_task(request):
     return HttpResponse("Update Task")
