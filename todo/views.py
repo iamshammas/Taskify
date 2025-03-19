@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib.auth import login,authenticate,logout
+from todo.models import Task
 # Create your views here.
 
 def signup(requests):
@@ -21,15 +22,28 @@ def loginn(requests):
         unm = requests.POST.get('unm')
         pwd = requests.POST.get('pwd')
         myuser = authenticate(username=unm,password=pwd)
-        myuser.save()
+        if myuser is not None:
+            login(requests,myuser)
+        else:
+            pass
         return redirect('dashboard')
     return render(requests,'login.html')
 
 def dashboard(request):
-    return render(request,'dashboard.html')
+    items = Task.objects.filter(user=request.user)
+    context = {
+        'items' : items
+    }
+    return render(request,'dashboard.html',context)
 
 def add_task(request):
     return HttpResponse("add_task")
+
+def update_task(request):
+    return HttpResponse("Update Task")
+
+def delete_task(request):
+    return HttpResponse("Delete Task")
 
 def logout_user(request):
     logout(request)
