@@ -24,3 +24,13 @@ def loginn(requests):
         myuser.save()
         return redirect('dashboard')
     return render(requests,'login.html')
+
+def dashboard(request):
+    return render(request,'dashboard.html')
+
+def add_task(request):
+    return HttpResponse("add_task")
+
+def logout_user(request):
+    logout(request)
+    return redirect('loginn')
