@@ -3,5 +3,5 @@ from todo import views
 
 urlpatterns = [
     path('signup',views.signup,name='signup'),
-    path('loginn',views.loginn,name='loginn')
+    path('loginn',views.loginn,name='loginn'),
 ]
