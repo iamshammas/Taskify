@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.models import User
 from django.contrib.auth import login,authenticate,logout
 from todo.models import Task
@@ -42,8 +42,10 @@ def add_task(request):
 def update_task(request):
     return HttpResponse("Update Task")
 
-def delete_task(request):
-    return HttpResponse("Delete Task")
+def delete_task(request,pk):
+    task = get_object_or_404(Task,pk=pk)
+    task.delete()
+    return redirect('dashboard')
 
 def logout_user(request):
     logout(request)
