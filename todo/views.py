@@ -43,8 +43,17 @@ def add_task(request):
         new_task.save()
     return redirect('dashboard')
 
-def update_task(request):
-    return HttpResponse("Update Task")
+def update_task(request,pk):
+    item = get_object_or_404(Task,pk=pk)
+    if request.method == 'POST':
+        new_title = request.POST.get('title')
+        item.title = new_title
+        item.save()
+        return redirect('dashboard')
+    context = {
+        'item' : item
+    }
+    return render(request,'update.html',context)
 
 def delete_task(request,pk):
     task = get_object_or_404(Task,pk=pk)
