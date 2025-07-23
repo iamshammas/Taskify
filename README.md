@@ -41,6 +41,9 @@ Taskify is a simple Django-based to-do application with multi-user support. Each
 
 The application should now be running at `http://127.0.0.1:8000/`.  
 
+Live Demo
+You can try the app live here: 👉 https://taskify-l639.onrender.com/
+
 ## Usage  
 
 1. **Register/Login** – New users can register, or existing users can log in.  
